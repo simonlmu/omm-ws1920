@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var playlistsRouter = require('./routes/playlists');
+var songsRouter = require('./routes/songs');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var DataStorage = require('./model/DataStorage')
 const dataStorage = new DataStorage();
 // a way to make that one instance accessible from every middleware: attaching it to the request object
+// damit man den DataStorage von überall zugreifen kann und nicht extra einlesen muss
 app.use((req,res,next)=> {
   req.dataStorage = dataStorage;
   next();
@@ -32,6 +34,8 @@ app.use((req,res,next)=> {
 app.use('/', indexRouter);
 // all requests to /playlists/... are handled by the playlists middleware
 app.use('/playlists', playlistsRouter);
+
+app.use('/songs', songsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

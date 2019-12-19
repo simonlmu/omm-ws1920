@@ -22,5 +22,15 @@ router.get('/:playlistId', function(req, res, next) {
 });
 
 // TODO add other playlists API endpoints here
+router.get('/:playlistId/songs', function(req, res, next){
+  let playlistId = req.params.playlistId;
+  let songs = req.dataStorage.getSongsOfPlaylist(playlistId);
+  res.send(songs);
+});
+
+router.get('/:playlistId/songs/:songId', function(req, res, next){
+  let songId = req.params.songId;
+  res.location(`/songs/${songId}`).status(301).send();
+});
 
 module.exports = router;

@@ -11,7 +11,7 @@ class DataStorage {
                 1440817260,1350457768,1211829300,1132801552,487215156,1440489651
             ]
         }
-    }
+    };
     songs = {
         1440817260: {
             artist: "John Lennon",
@@ -38,7 +38,7 @@ class DataStorage {
             title: "Lodi"
         }
 
-    }
+    };
 
     // returns ids of all playlists
     getAllPlaylists(){
